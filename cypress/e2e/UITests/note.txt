@@ -1,0 +1,60 @@
+Cpyress uses CSS selector by default
+To use Xpath as locator we have to install xpath plugin.
+1. Execute this  command: npm install -D cypress-xpath
+2. Add this to :/// <reference types='cypress-xpath' /> Support-> command.js file 
+3. Add this to require('cypress-xpath') e2e.js file under Support folder
+
+to use it cy.xpath("//*[@id='hvxyz']")
+for CSS locator cy.get('fdf')
+
+Cypress Assertions
+------------------
+1. Implicit Assertions  built-in Assertions
+should
+and
+we use it with : eq, contain, include, have.lenght , have.value
+
+2. Explicit Assertions
+expect - BDD
+assert - TDD
+ to install Iframe plugin execute this: npm install -D cypress-iframe from terminal
+ npm install -D cypress-iframe 
+ and add this  import 'cypress-iframe' or  require('cypress-iframe') to command.js file 
+
+
+HOOKS 
+before runs once before execution
+after  runs once after execution
+beforeEach runs foreach test
+AfterEach runs for each test
+TAGS skip, only
+
+File Upload 
+Execute the following code in terminal
+npm install --save-dev cypress-file-upload
+
+To be able to use any custom command you need to add it
+ to cypress/support/commands.js like this:
+
+import 'cypress-file-upload';
+
+Reporting:
+1. Install cypress-mochawesome.reporter
+   npm i --save-dev cypress-mochawesome-reporter
+2. Change cypress reporter & setup HOOKS
+edit config file (cypress.config.js by default)
+
+const {defineConfig} = require('cypress');
+module.exports =defineConfig({
+    reporter: 'cypress-mochawesome-reporter',
+
+    e2e: {
+        setupNodeEvents(on,config){
+            // implement node event listeners here
+            require('cypress-mochawesome-reporter/plugin')(on);
+        }
+    }
+})
+
+3. Add to cypress/support/e2e.js
+import 'cypress-mochawesome-reporter/register';
